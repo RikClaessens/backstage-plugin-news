@@ -20,6 +20,84 @@ const getId = (location: string, filePath: string) => {
   return `${kebabCase(location.replace('https://', ''))}-${filePath}`;
 };
 
+const processNewsLocations = async (
+  dir: string,
+  locations: string[],
+  urlReader: UrlReaderService,
+  logger: LoggerService,
+  integrations: ScmIntegrations,
+  existingNewsItems: Set<string>,
+  persistenceContext: PersistenceContext,
+) => {
+  await Promise.all(
+    locations.map(async (location, index) => {
+      const locationDir = resolvePath(dir, `location-${index}`);
+      fs.mkdirSync(locationDir);
+      logger.info(`Created location dir: ${locationDir}`);
+      await fetchContents({
+        reader: urlReader,
+        integrations,
+        baseUrl: location,
+        outputPath: locationDir,
+      });
+      await processAllNews(
+        locationDir,
+        location,
+        logger,
+        existingNewsItems,
+        persistenceContext,
+      );
+    }),
+  );
+};
+
+const processAllNews = async (
+  dir: string,
+  location: string,
+  logger: LoggerService,
+  existingNewsItems: Set<string>,
+  persistenceContext: PersistenceContext,
+) => {
+  logger.info(`Processing location: ${location}`);
+  // recursively go through all files in the directory
+  const files = fs.readdirSync(dir);
+  for (const file of files) {
+    const filePath = resolvePath(dir, file);
+    if (fs.statSync(filePath).isDirectory()) {
+      await processAllNews(
+        filePath,
+        location,
+        logger,
+        existingNewsItems,
+        persistenceContext,
+      );
+    }
+    logger.info(`Processing file: ${filePath}`);
+    if (filePath.endsWith('.md')) {
+      try {
+        logger.info(`Processing file: ${filePath}`);
+        const doc = parseNews(filePath);
+        const id = getId(location, filePath);
+        existingNewsItems.delete(id);
+
+        await persistenceContext.newsDb.upsertNews({ ...doc, id });
+      } catch (error) {
+        logger.error(`Error processing file: ${filePath}`);
+        logger.error(`${error}`);
+      }
+    }
+  }
+};
+
+const deleteNonExistingNews = async (
+  newsIdsToDelete: Set<string>,
+  persistenceContext: PersistenceContext,
+) => {
+  newsIdsToDelete.forEach(async id => {
+    await persistenceContext.newsDb.deleteAnnouncementByID(id);
+  });
+};
+
 const fetchNews = async ({
   logger,
   locations,
@@ -38,31 +116,19 @@ const fetchNews = async ({
   );
   logger.info(`Created temp dir: ${tempDir}`);
 
-  await Promise.all(
-    locations.map(async (location, index) => {
-      const locationDir = resolvePath(tempDir, `location-${index}`);
-      fs.mkdirSync(locationDir);
-      logger.info(`Created location dir: ${locationDir}`);
-      await fetchContents({
-        reader: urlReader,
-        integrations,
-        baseUrl: location,
-        outputPath: locationDir,
-      });
-    }),
+  logger.info(`Processing news locations: ${locations}`);
+  await processNewsLocations(
+    tempDir,
+    locations,
+    urlReader,
+    logger,
+    integrations,
+    existingNewsItems,
+    persistenceContext,
   );
 
-  const id = getId(locations[0], 'zelda/Zelda Release v1.3.0.md');
-  existingNewsItems.delete(id);
-  const doc = parseNews(
-    resolvePath(tempDir, 'location-0', 'zelda', 'Zelda Release v1.3.0.md'),
-  );
-
-  await persistenceContext.newsDb.upsertNews({ ...doc, id });
-
-  existingNewsItems.forEach(async id => {
-    await persistenceContext.newsDb.deleteAnnouncementByID(id);
-  });
+  logger.info(`Deleting non-existing news ${Array.from(existingNewsItems)}`);
+  await deleteNonExistingNews(existingNewsItems, persistenceContext);
 
   fs.rmSync(tempDir, { recursive: true });
   logger.info(`Deleted temp dir: ${tempDir}`);
