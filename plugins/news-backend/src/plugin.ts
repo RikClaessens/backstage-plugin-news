@@ -5,7 +5,8 @@ import {
 } from '@backstage/backend-plugin-api';
 import { ScmIntegrations } from '@backstage/integration';
 import { catalogServiceRef } from '@backstage/plugin-catalog-node';
-import fetchNews from './services/FetchNewsService';
+import fetchNews from './services/NewsService';
+import { initializePersistenceContext } from './services/NewsService/persistence/persistenceContext';
 
 /**
  * newsPlugin backend plugin
@@ -25,11 +26,14 @@ export const newsPlugin = createBackendPlugin({
         catalog: catalogServiceRef,
         scheduler: coreServices.scheduler,
         urlReader: coreServices.urlReader,
+        database: coreServices.database,
       },
-      async init({ logger, config, scheduler, urlReader }) {
+      async init({ logger, config, scheduler, urlReader, database }) {
+        const persistenceContext = await initializePersistenceContext(database);
+
         const defaultSchedule = {
-          frequency: { minutes: 10 },
-          timeout: { minutes: 5 },
+          frequency: { seconds: 20 },
+          timeout: { seconds: 5 },
           initialDelay: { seconds: 3 },
         };
 
@@ -51,6 +55,7 @@ export const newsPlugin = createBackendPlugin({
               locations,
               urlReader,
               integrations,
+              persistenceContext,
             });
           },
         });
