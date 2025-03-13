@@ -1,0 +1,8 @@
+{
+  "name": "backstage-plugin-news",
+  "version": "0.1.0",
+  "description": "The News plugin retrieves markdown files with frontmatter and displays them as news articles in Backstage, Spotify's IDP framework.",
+  "repository": "https://github.com/RikClaessens/backstage-plugin-news.git",
+  "license": "Apache-2.0",
+  "private": true
+}
