@@ -26,6 +26,10 @@ export class NewsDatabase {
     return this.db<News>(newsTable).select('id');
   }
 
+  async allNews(): Promise<News[]> {
+    return this.db<News>(newsTable).select('*');
+  }
+
   async newsById(id: string): Promise<News | undefined> {
     const news: News | undefined = await this.db<News>(newsTable)
       .where('id', id)
