@@ -4,7 +4,7 @@ import {
   readSchedulerServiceTaskScheduleDefinitionFromConfig,
 } from '@backstage/backend-plugin-api';
 import { ScmIntegrations } from '@backstage/integration';
-import { catalogServiceRef } from '@backstage/plugin-catalog-node';
+import { createRouter } from './router';
 import fetchNews from './services/NewsService';
 import { initializePersistenceContext } from './services/NewsService/persistence/persistenceContext';
 
@@ -20,16 +20,23 @@ export const newsPlugin = createBackendPlugin({
       deps: {
         config: coreServices.rootConfig,
         logger: coreServices.logger,
-        auth: coreServices.auth,
-        httpAuth: coreServices.httpAuth,
         httpRouter: coreServices.httpRouter,
-        catalog: catalogServiceRef,
         scheduler: coreServices.scheduler,
         urlReader: coreServices.urlReader,
         database: coreServices.database,
+        discovery: coreServices.discovery,
       },
-      async init({ logger, config, scheduler, urlReader, database }) {
+      async init({
+        config,
+        logger,
+        httpRouter,
+        scheduler,
+        urlReader,
+        database,
+        discovery,
+      }) {
         const persistenceContext = await initializePersistenceContext(database);
+        logger.info(`Base url: ${await discovery.getBaseUrl('news')}`);
 
         const defaultSchedule = {
           frequency: { seconds: 20 },
@@ -61,6 +68,12 @@ export const newsPlugin = createBackendPlugin({
         });
         logger.info('Initialized backstage-plugin-news');
         logger.info(`News locations: ${locations}`);
+
+        httpRouter.use(
+          await createRouter({
+            persistenceContext,
+          }),
+        );
       },
     });
   },
