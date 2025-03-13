@@ -26,3 +26,10 @@ node_modules/
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# Build output
+dist
+dist-types
+
+# Backstage config files
+app-config.yaml
