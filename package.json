@@ -10,6 +10,7 @@
     "@backstage/cli": "^0.30.0",
     "@backstage/repo-tools": "^0.13.0",
     "@changesets/cli": "^2.28.1",
-    "prettier": "3.5.3"
+    "prettier": "3.5.3",
+    "typescript": "^5.8.2"
   }
 }
