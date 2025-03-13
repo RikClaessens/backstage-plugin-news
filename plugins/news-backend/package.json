@@ -27,7 +27,10 @@
     "@backstage/backend-plugin-api": "^1.2.0",
     "@backstage/catalog-client": "^1.9.1",
     "@backstage/errors": "^1.2.7",
+    "@backstage/integration": "^1.16.1",
     "@backstage/plugin-catalog-node": "^1.16.0",
+    "@backstage/plugin-scaffolder-node": "^0.7.0",
+    "@backstage/plugin-search-common": "^1.2.17",
     "express": "^4.17.1",
     "express-promise-router": "^4.1.0",
     "zod": "^3.22.4"
