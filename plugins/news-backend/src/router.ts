@@ -10,8 +10,12 @@ export async function createRouter({
   const router = Router();
   router.use(express.json());
 
-  router.get('/all-news', async (_req, res) => {
+  router.get('/', async (_req, res) => {
     res.json(await persistenceContext.newsDb.allNews());
+  });
+
+  router.get('/:id', async (req, res) => {
+    res.json(await persistenceContext.newsDb.newsById(req.params.id));
   });
 
   return router;

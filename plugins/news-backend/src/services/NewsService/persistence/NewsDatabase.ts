@@ -27,7 +27,15 @@ export class NewsDatabase {
   }
 
   async allNews(): Promise<News[]> {
-    return this.db<News>(newsTable).select('*');
+    return this.db<News>(newsTable).select(
+      'id',
+      'title',
+      'summary',
+      'created_at',
+      'author',
+      'tags',
+      'status',
+    );
   }
 
   async newsById(id: string): Promise<News | undefined> {

@@ -5,6 +5,7 @@ import { kebabCase } from 'change-case';
 import fs from 'fs';
 import os from 'os';
 import { resolve as resolvePath } from 'path';
+import uuid from 'uuid-by-string';
 import { parseNews } from './parseNews';
 import { PersistenceContext } from './persistence/persistenceContext';
 
@@ -15,10 +16,6 @@ interface FetchNewsProps {
   integrations: ScmIntegrations;
   persistenceContext: PersistenceContext;
 }
-
-const getId = (location: string, filePath: string) => {
-  return `${kebabCase(location.replace('https://', ''))}-${filePath}`;
-};
 
 const processNewsLocations = async (
   dir: string,
@@ -57,6 +54,7 @@ const processAllNews = async (
   logger: LoggerService,
   existingNewsItems: Set<string>,
   persistenceContext: PersistenceContext,
+  idPart = '',
 ) => {
   logger.info(`Processing location: ${location}`);
   // recursively go through all files in the directory
@@ -70,6 +68,7 @@ const processAllNews = async (
         logger,
         existingNewsItems,
         persistenceContext,
+        `${idPart}-${file}`,
       );
     }
     logger.info(`Processing file: ${filePath}`);
@@ -77,7 +76,9 @@ const processAllNews = async (
       try {
         logger.info(`Processing file: ${filePath}`);
         const doc = parseNews(filePath);
-        const id = getId(location, filePath);
+
+        const id = uuid(kebabCase(`${idPart}-${file}`));
+        console.log(`id: ${id}`);
         existingNewsItems.delete(id);
 
         await persistenceContext.newsDb.upsertNews({ ...doc, id });
