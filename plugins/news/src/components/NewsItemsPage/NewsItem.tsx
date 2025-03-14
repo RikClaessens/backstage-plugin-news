@@ -1,10 +1,6 @@
 import React from 'react';
 import { InfoCard, Link } from '@backstage/core-components';
-import { useApp } from '@backstage/core-plugin-api';
-import { Box, Chip, makeStyles, Typography } from '@material-ui/core';
-import MuiArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import MuiPeopleIcon from '@material-ui/icons/People';
-import { DateTime } from 'luxon';
+import { Box, Chip, makeStyles } from '@material-ui/core';
 import { News } from '../../types';
 import PublishedDateAndAuthor from '../PublishedDateAndAuthor';
 
@@ -14,17 +10,12 @@ const useStyles = makeStyles(theme => ({
     '& div:first-of-type': {
       maxWidth: '100%',
     },
+    textDecoration: 'none !important',
   },
-  link: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-  linkText: {
-    margin: theme.spacing(0, 1),
-  },
-  linkIcon: {
-    marginLeft: '0.5rem',
-    display: 'flex',
+  newsItemInfoCard: {
+    '&:hover': {
+      backgroundColor: theme.palette.action.hover,
+    },
   },
   newsItemCard: {
     display: 'flex',
@@ -36,14 +27,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const NewsItem = ({ news }: { news: News }) => {
-  const ArrowForwardIcon =
-    useApp().getSystemIcon('arrowForward') || MuiArrowForwardIcon;
-  const GroupIcon = useApp().getSystemIcon('group') || MuiPeopleIcon;
-
   const classes = useStyles();
 
   return (
-    <>
+    <Link to={`/news/${news.id}`} className={classes.newsItem}>
       <InfoCard
         title={news.title}
         subheader={<PublishedDateAndAuthor news={news} />}
@@ -53,17 +40,7 @@ const NewsItem = ({ news }: { news: News }) => {
         titleTypographyProps={{
           noWrap: true,
         }}
-        className={classes.newsItem}
-        actions={
-          <Link to={`/news/${news.id}`} className={classes.link}>
-            <Typography variant="body2" className={classes.linkText}>
-              Read more
-            </Typography>
-            <Box className={classes.linkIcon}>
-              <ArrowForwardIcon />
-            </Box>
-          </Link>
-        }
+        className={classes.newsItemInfoCard}
         cardClassName={classes.newsItemCard}
       >
         <Box className={classes.summary}>{news.summary}</Box>
@@ -73,7 +50,7 @@ const NewsItem = ({ news }: { news: News }) => {
           ))}
         </p>
       </InfoCard>
-    </>
+    </Link>
   );
 };
 

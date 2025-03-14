@@ -24,7 +24,7 @@ export const Router = (props: RouterProps) => {
   const propsWithDefaults: NewsItemsPageProps = {
     title: 'News',
     subtitle: "Check out what's new!",
-    themeId: 'service',
+    themeId: 'app',
     ...props,
   };
 

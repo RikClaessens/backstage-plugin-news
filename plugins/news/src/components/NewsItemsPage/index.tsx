@@ -10,7 +10,7 @@ import NewsItems from './NewsItems';
 export interface NewsItemsPageProps {
   title?: string;
   subtitle?: string;
-  themeId?: string;
+  themeId: string;
 }
 
 const NewsItemsPage = ({ title, subtitle, themeId }: NewsItemsPageProps) => {

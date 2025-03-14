@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       gridTemplateColumns: '1fr',
     },
-    gap: theme.spacing(2),
+    gap: theme.spacing(4),
     alignItems: 'stretch',
     maxWidth: '100%',
   },

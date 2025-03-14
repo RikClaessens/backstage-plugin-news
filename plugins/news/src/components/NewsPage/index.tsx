@@ -3,36 +3,29 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import useAsync from 'react-use/lib/useAsync';
 import {
-  Breadcrumbs,
   Content,
-  ContentHeader,
   Header,
   HeaderLabel,
-  Link,
-  MarkdownContent,
   Page,
   Progress,
   ResponseErrorPanel,
 } from '@backstage/core-components';
-import { useApi, configApiRef } from '@backstage/core-plugin-api';
-import { Typography } from '@material-ui/core';
+import { useApi, configApiRef, useApp } from '@backstage/core-plugin-api';
+import { Box, Button } from '@material-ui/core';
+import MuiArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { News } from '../../types';
-import PublishedDateAndAuthor, {
-  getRelativePublishedDate,
-} from '../PublishedDateAndAuthor';
+import { AuthorName, RelativePublishedDate } from '../PublishedDateAndAuthor';
 import NewsContent from './NewsContent';
 
 export interface NewsPageProps {
   title?: string;
   subtitle?: string;
-  themeId?: string;
+  themeId: string;
 }
 
-const NewsPage = ({
-  title = 'News',
-  subtitle = "Check out what's new!",
-  themeId = 'service',
-}: NewsPageProps) => {
+const NewsPage = ({ title, themeId = 'service' }: NewsPageProps) => {
+  const ArrowBackIcon = useApp().getSystemIcon('arrowBack') || MuiArrowBackIcon;
+
   const params = useParams();
   const { id } = params;
   const config = useApi(configApiRef);
@@ -56,13 +49,25 @@ const NewsPage = ({
 
   return (
     <Page themeId={themeId}>
-      <Header title={news.title || title} type="News">
-        <HeaderLabel label="Published" value={getRelativePublishedDate(news)} />
-        <HeaderLabel label="Published by" value={news.author} />
+      <Header title={news.title || title}>
+        <HeaderLabel
+          label="Published"
+          value={<RelativePublishedDate news={news} />}
+        />
+        <HeaderLabel label="Published by" value={<AuthorName news={news} />} />
       </Header>
 
       <Content>
-        <NewsContent news={news} />
+        <Box>
+          <Button
+            startIcon={<ArrowBackIcon />}
+            href="/news"
+            style={{ textTransform: 'none' }}
+          >
+            Back to news
+          </Button>
+          <NewsContent news={news} />
+        </Box>
       </Content>
     </Page>
   );
