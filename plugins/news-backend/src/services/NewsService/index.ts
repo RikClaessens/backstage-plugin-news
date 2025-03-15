@@ -1,7 +1,6 @@
 import { LoggerService, UrlReaderService } from '@backstage/backend-plugin-api';
 import { ScmIntegrations } from '@backstage/integration';
 import { fetchContents } from '@backstage/plugin-scaffolder-node';
-import { kebabCase } from 'change-case';
 import fs from 'fs';
 import os from 'os';
 import { resolve as resolvePath } from 'path';
@@ -77,7 +76,7 @@ const processAllNews = async (
         logger.info(`Processing file: ${filePath}`);
         const doc = parseNews(filePath);
 
-        const id = uuid(kebabCase(`${idPart}-${file}`));
+        const id = uuid(`${idPart}-${file}`);
         console.log(`id: ${id}`);
         existingNewsItems.delete(id);
 
