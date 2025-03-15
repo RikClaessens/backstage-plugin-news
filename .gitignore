@@ -33,3 +33,6 @@ dist-types
 
 # Backstage config files
 app-config.yaml
+
+notes.md
+.env

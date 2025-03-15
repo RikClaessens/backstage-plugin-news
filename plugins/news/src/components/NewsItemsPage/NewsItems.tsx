@@ -1,7 +1,11 @@
 import React from 'react';
 import useAsync from 'react-use/lib/useAsync';
 import { Progress, ResponseErrorPanel } from '@backstage/core-components';
-import { useApi, configApiRef } from '@backstage/core-plugin-api';
+import {
+  useApi,
+  configApiRef,
+  identityApiRef,
+} from '@backstage/core-plugin-api';
 import { Box, makeStyles } from '@material-ui/core';
 import { News } from '../../types';
 import NewsItem from './NewsItem';
@@ -13,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       gridTemplateColumns: '1fr',
     },
-    gap: theme.spacing(4),
+    gap: 16,
     alignItems: 'stretch',
     maxWidth: '100%',
   },
@@ -26,6 +30,7 @@ const useStyles = makeStyles(theme => ({
 
 const NewsList = ({ newsItems }: { newsItems: News[] }) => {
   const classes = useStyles();
+  console.log(newsItems);
   return (
     <Box className={classes.newsList}>
       {newsItems.map(news => (
@@ -39,6 +44,7 @@ const NewsList = ({ newsItems }: { newsItems: News[] }) => {
 
 const NewsItems = () => {
   const config = useApi(configApiRef);
+  const identityApi = useApi(identityApiRef);
 
   const apiUrl = `${config.getConfig('backend').getString('baseUrl')}/api/news/`;
   const {
@@ -46,15 +52,29 @@ const NewsItems = () => {
     loading,
     error,
   } = useAsync(async (): Promise<News[]> => {
-    const result = await fetch(apiUrl);
+    const { token } = await identityApi.getCredentials();
+
+    const headers: HeadersInit = new Headers();
+    if (token && !headers.has('authorization')) {
+      headers.set('authorization', `Bearer ${token}`);
+    }
+    const result = await fetch(apiUrl, {
+      headers,
+    });
     return result.json();
   }, [apiUrl]);
 
   if (loading) {
     return <Progress />;
-  } else if (error) {
-    return <ResponseErrorPanel error={error} />;
+  } else if (error || (newsItems as any).error) {
+    return (
+      <ResponseErrorPanel
+        error={error || new Error((newsItems as any).error)}
+      />
+    );
   }
+
+  console.log(newsItems);
 
   return <NewsList newsItems={newsItems || []} />;
 };

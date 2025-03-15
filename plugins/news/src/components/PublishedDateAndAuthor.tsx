@@ -13,13 +13,15 @@ const useStyles = makeStyles(theme => ({
   link: {
     display: 'flex',
     alignItems: 'center',
+    color: theme.palette.link,
   },
   linkText: {
-    margin: theme.spacing(0, 1),
+    margin: 1,
   },
   linkIcon: {
-    marginLeft: '0.5rem',
     display: 'flex',
+    marginRight: theme.spacing(1),
+    fontSize: 'inherit',
   },
   newsItemCard: {
     display: 'flex',
@@ -36,7 +38,7 @@ export const RelativePublishedDate = ({ news }: { news: News }) =>
 export const AuthorName = ({ news }: { news: News }) => {
   const catalogApi = useApi(catalogApiRef);
   const { value } = useAsync(
-    async () => catalogApi.getEntityByRef(news.author),
+    async () => catalogApi.getEntityByRef(`group:default/${news.author}`),
     [news],
   );
 
@@ -46,18 +48,20 @@ export const AuthorName = ({ news }: { news: News }) => {
 const PublishedDateAndAuthor = ({ news }: { news: News }) => {
   const classes = useStyles();
   return (
-    <Box display="flex" alignItems="center">
-      Published {getRelativePublishedDate(news)} by
-      <Box>
-        <Link to={news.author} className={classes.link}>
-          <Box className={classes.linkIcon}>
-            <GroupIcon />
-          </Box>
-          <Typography variant="body2" className={classes.linkText}>
-            <AuthorName news={news} />
-          </Typography>
-        </Link>
-      </Box>
+    <Box display="flex" flexDirection="column">
+      <Typography variant="body2">
+        Published {getRelativePublishedDate(news)} by
+        <Box>
+          <Link to={news.author} className={classes.link}>
+            <Box className={classes.linkIcon}>
+              <GroupIcon />
+            </Box>
+            <Typography variant="body2" className={classes.linkText}>
+              <AuthorName news={news} />
+            </Typography>
+          </Link>
+        </Box>
+      </Typography>
     </Box>
   );
 };

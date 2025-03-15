@@ -10,11 +10,19 @@ const useStyles = makeStyles(theme => ({
     '& div:first-of-type': {
       maxWidth: '100%',
     },
+    '& > div': {
+      height: '100%',
+    },
     textDecoration: 'none !important',
+    border: `1px solid ${theme.palette.border}`,
+    borderRadius: theme.shape.borderRadius,
   },
   newsItemInfoCard: {
     '&:hover': {
-      backgroundColor: theme.palette.action.hover,
+      backgroundColor: `${theme.palette.action.hover} !important`,
+      '& div': {
+        backgroundColor: `${theme.palette.action.hover} !important`,
+      },
     },
   },
   newsItemCard: {
