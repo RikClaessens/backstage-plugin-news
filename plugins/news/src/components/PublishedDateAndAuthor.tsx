@@ -45,24 +45,30 @@ export const AuthorName = ({ news }: { news: News }) => {
   return value?.metadata.title ?? news.author;
 };
 
-const PublishedDateAndAuthor = ({ news }: { news: News }) => {
+const PublishedDateAndAuthor = ({
+  news,
+  vertical = false,
+}: {
+  news: News;
+  vertical: boolean;
+}) => {
   const classes = useStyles();
   return (
-    <Box display="flex" flexDirection="column">
-      <Typography variant="body2">
-        Published {getRelativePublishedDate(news)} by
-        <Box>
-          <Link to={news.author} className={classes.link}>
-            <Box className={classes.linkIcon}>
-              <GroupIcon />
-            </Box>
-            <Typography variant="body2" className={classes.linkText}>
-              <AuthorName news={news} />
-            </Typography>
-          </Link>
-        </Box>
-      </Typography>
-    </Box>
+    <Typography variant="body2">
+      <Box display="flex" flexDirection={vertical ? 'column' : 'row'}>
+        <Typography variant="body2" style={{ marginRight: 8 }}>
+          Published {getRelativePublishedDate(news)} by
+        </Typography>
+        <Link to={news.author} className={classes.link}>
+          <Box className={classes.linkIcon}>
+            <GroupIcon />
+          </Box>
+          <Typography variant="body2" className={classes.linkText}>
+            <AuthorName news={news} />
+          </Typography>
+        </Link>
+      </Box>
+    </Typography>
   );
 };
 

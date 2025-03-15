@@ -16,7 +16,7 @@ import {
   useApp,
   identityApiRef,
 } from '@backstage/core-plugin-api';
-import { Box, Button } from '@material-ui/core';
+import { Box, Button, useMediaQuery, useTheme } from '@material-ui/core';
 import MuiArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { News } from '../../types';
 import { AuthorName, RelativePublishedDate } from '../PublishedDateAndAuthor';
@@ -38,14 +38,21 @@ const NewsPage = ({ title, themeId = 'service' }: NewsPageProps) => {
 
   const apiUrl = `${config.getConfig('backend').getString('baseUrl')}/api/news`;
 
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('md'));
+
   const {
     value: news,
     loading,
     error,
   } = useAsync(async (): Promise<News> => {
     const { token } = await identityApi.getCredentials();
+    const headers: HeadersInit = new Headers();
+    if (token && !headers.has('authorization')) {
+      headers.set('authorization', `Bearer ${token}`);
+    }
     const result = await fetch(`${apiUrl}/${id}`, {
-      headers: { Authorization: `Bearer ${token}` },
+      headers,
     });
     return result.json();
   }, []);
@@ -58,20 +65,13 @@ const NewsPage = ({ title, themeId = 'service' }: NewsPageProps) => {
 
   return (
     <Page themeId={themeId}>
-      <Header title={news.title || title}>
-        <HeaderLabel
-          label="Published"
-          value={<RelativePublishedDate news={news} />}
-        />
-        <HeaderLabel label="Published by" value={<AuthorName news={news} />} />
-      </Header>
-
+      <Header title={news.title || title} />
       <Content>
         <Box>
           <Button
             startIcon={<ArrowBackIcon />}
             href="/news"
-            style={{ textTransform: 'none' }}
+            style={{ textTransform: 'none', marginBottom: '1rem' }}
           >
             Back to news
           </Button>
