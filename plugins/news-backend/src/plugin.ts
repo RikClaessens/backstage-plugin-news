@@ -53,21 +53,29 @@ export const newsPlugin = createBackendPlugin({
         const locations = config.getStringArray('news.locations');
         const integrations = ScmIntegrations.fromConfig(config);
 
-        await scheduler.scheduleTask({
-          ...schedule,
-          id: 'retrieve-news-documents',
-          fn: async () => {
-            await fetchNews({
-              logger,
-              locations,
-              urlReader,
-              integrations,
-              persistenceContext,
-            });
-          },
-        });
+        if (locations && locations.length > 0) {
+          await scheduler.scheduleTask({
+            ...schedule,
+            id: 'retrieve-news-documents',
+            fn: async () => {
+              await fetchNews({
+                logger,
+                locations,
+                urlReader,
+                integrations,
+                persistenceContext,
+              });
+            },
+          });
+          logger.info(
+            `News retrieval scheduled task started, locations: ${locations}`,
+          );
+        } else {
+          logger.info(
+            'No news retrieval scheduled task started, no locations configured',
+          );
+        }
         logger.info('Initialized backstage-plugin-news');
-        logger.info(`News locations: ${locations}`);
 
         httpRouter.use(
           await createRouter({
