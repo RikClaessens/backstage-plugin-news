@@ -1,13 +1,32 @@
-# news
+# backstage-plugin-news
 
-Welcome to the news plugin!
+To install the plugin in the Backstage app, run the following commands:
 
-_This plugin was created through the Backstage CLI_
+```bash
+yarn --cwd packages/app add @rikclaessens/backstage-plugin-news
+```
 
-## Getting started
+To configure the locations of the news articles, add the following to your app's `app-config.yaml`:
 
-Your plugin has been added to the example app in this repository, meaning you'll be able to access it by running `yarn start` in the root directory, and then navigating to [/news](http://localhost:3000/news).
+```yaml
+news:
+  locations:
+    - https://dev.azure.com/your-org/your-project/_git/your-news-repo
+```
 
-You can also serve the plugin in isolation by running `yarn start` in the plugin directory.
-This method of serving the plugin provides quicker iteration speed and a faster startup and hot reloads.
-It is only meant for local development, and the setup for it can be found inside the [/dev](./dev) directory.
+Finally, make the plugin available in your Backstage instance by adding it to the `App.tsx`:
+
+```tsx
+...
+import { NewsItemsPage } from '@rikclaessens/backstage-plugin-news';
+...
+
+const routes = (
+  <FlatRoutes>
+    ...
+    <Route path="/news" element={<NewsItemsPage />} />
+    ...
+  </FlatRoutes>
+);
+...
+```

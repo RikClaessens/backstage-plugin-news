@@ -224,9 +224,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/client-cognito-identity@npm:3.758.0":
-  version: 3.758.0
-  resolution: "@aws-sdk/client-cognito-identity@npm:3.758.0"
+"@aws-sdk/client-cognito-identity@npm:3.768.0":
+  version: 3.768.0
+  resolution: "@aws-sdk/client-cognito-identity@npm:3.768.0"
   dependencies:
     "@aws-crypto/sha256-browser": "npm:5.2.0"
     "@aws-crypto/sha256-js": "npm:5.2.0"
@@ -267,7 +267,7 @@ __metadata:
     "@smithy/util-retry": "npm:^4.0.1"
     "@smithy/util-utf8": "npm:^4.0.0"
     tslib: "npm:^2.6.2"
-  checksum: 10c0/de776517c5971a3f2f34d335b8a6524356f48bc562dfc827b26641cb3c2bc6524af7bc6fad61b1db77211fc85209020456e5fd182a557817b4d8712fdc573754
+  checksum: 10c0/8890c3ed5d5bdbcd287f9ebf9f306f0bac6d05fbba24a9d3baffb2dcb65e8bae5c15428b94a830a699a95893132c701dd7d23e135ac34234f05afb4e1d824230
   languageName: node
   linkType: hard
 
@@ -447,16 +447,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/credential-provider-cognito-identity@npm:3.758.0":
-  version: 3.758.0
-  resolution: "@aws-sdk/credential-provider-cognito-identity@npm:3.758.0"
+"@aws-sdk/credential-provider-cognito-identity@npm:3.768.0":
+  version: 3.768.0
+  resolution: "@aws-sdk/credential-provider-cognito-identity@npm:3.768.0"
   dependencies:
-    "@aws-sdk/client-cognito-identity": "npm:3.758.0"
+    "@aws-sdk/client-cognito-identity": "npm:3.768.0"
     "@aws-sdk/types": "npm:3.734.0"
     "@smithy/property-provider": "npm:^4.0.1"
     "@smithy/types": "npm:^4.1.0"
     tslib: "npm:^2.6.2"
-  checksum: 10c0/cf33159f6be0d2294523d1f45e27da1bb04df71a2a162d4a5176b1c14fc51bfb570bdc5a3914b16db91a0602285580165ad6c544f90548db3d66c6ef8abf5b4d
+  checksum: 10c0/73b3aafa6e4bbf0dcb7377351f8a77ccd66c04b524b80419962cbbbdff603d579e34a527f139e448f87b983feda456854ffa6eb88959e8794b80119e92b0ebad
   languageName: node
   linkType: hard
 
@@ -577,12 +577,12 @@ __metadata:
   linkType: hard
 
 "@aws-sdk/credential-providers@npm:^3.350.0":
-  version: 3.758.0
-  resolution: "@aws-sdk/credential-providers@npm:3.758.0"
+  version: 3.768.0
+  resolution: "@aws-sdk/credential-providers@npm:3.768.0"
   dependencies:
-    "@aws-sdk/client-cognito-identity": "npm:3.758.0"
+    "@aws-sdk/client-cognito-identity": "npm:3.768.0"
     "@aws-sdk/core": "npm:3.758.0"
-    "@aws-sdk/credential-provider-cognito-identity": "npm:3.758.0"
+    "@aws-sdk/credential-provider-cognito-identity": "npm:3.768.0"
     "@aws-sdk/credential-provider-env": "npm:3.758.0"
     "@aws-sdk/credential-provider-http": "npm:3.758.0"
     "@aws-sdk/credential-provider-ini": "npm:3.758.0"
@@ -597,7 +597,7 @@ __metadata:
     "@smithy/property-provider": "npm:^4.0.1"
     "@smithy/types": "npm:^4.1.0"
     tslib: "npm:^2.6.2"
-  checksum: 10c0/f7a52e11f4ed16dd6fa26f15163dcdc639f9bb741ace1da1c07982fafab9b2a2f966907837a32038cfbae51ee94aef32f16123927d8968ffd7e5a531d4f9e1c8
+  checksum: 10c0/bef13d856c25fe313e3c25f5404fec56e73ef6272a7d6e884becd8c087686f17ba8c6db5cce9a01af139b5eb48743e984134ad3b89932c55f3a9fa5c9ab0a548
   languageName: node
   linkType: hard
 
@@ -6286,8 +6286,8 @@ __metadata:
   linkType: hard
 
 "@openapitools/openapi-generator-cli@npm:^2.7.0":
-  version: 2.18.3
-  resolution: "@openapitools/openapi-generator-cli@npm:2.18.3"
+  version: 2.18.4
+  resolution: "@openapitools/openapi-generator-cli@npm:2.18.4"
   dependencies:
     "@nestjs/axios": "npm:3.1.3"
     "@nestjs/common": "npm:10.4.15"
@@ -6299,7 +6299,7 @@ __metadata:
     compare-versions: "npm:4.1.4"
     concurrently: "npm:6.5.1"
     console.table: "npm:0.10.0"
-    fs-extra: "npm:10.1.0"
+    fs-extra: "npm:11.3.0"
     glob: "npm:9.3.5"
     inquirer: "npm:8.2.6"
     lodash: "npm:4.17.21"
@@ -6309,7 +6309,7 @@ __metadata:
     tslib: "npm:2.8.1"
   bin:
     openapi-generator-cli: main.js
-  checksum: 10c0/e553c54f52d2a7049993b772597946b992c6fd4b937aef260484bc8c673ef2a592c3116572f2c2a1283524003b7608eb50cbfff7b047d8e7c51b27d95306d66d
+  checksum: 10c0/7608f204f9a56e38ea8b3cd8296094b3db108ed3efe259524b61f89dcbfe7e17c6f19302d6ce0001f8b269878f35564e8c090dd8dc2b1567f198e82282a118ad
   languageName: node
   linkType: hard
 
@@ -6530,9 +6530,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rikclaessens/plugin-news-backend@workspace:plugins/news-backend":
+"@rikclaessens/backstage-plugin-news-backend@workspace:plugins/news-backend":
   version: 0.0.0-use.local
-  resolution: "@rikclaessens/plugin-news-backend@workspace:plugins/news-backend"
+  resolution: "@rikclaessens/backstage-plugin-news-backend@workspace:plugins/news-backend"
   dependencies:
     "@backstage/backend-defaults": "npm:^0.8.0"
     "@backstage/backend-plugin-api": "npm:^1.2.0"
@@ -6558,9 +6558,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rikclaessens/plugin-news@workspace:plugins/news":
+"@rikclaessens/backstage-plugin-news@workspace:plugins/news":
   version: 0.0.0-use.local
-  resolution: "@rikclaessens/plugin-news@workspace:plugins/news"
+  resolution: "@rikclaessens/backstage-plugin-news@workspace:plugins/news"
   dependencies:
     "@backstage/cli": "npm:^0.30.0"
     "@backstage/core-app-api": "npm:^1.15.5"
@@ -10010,16 +10010,17 @@ __metadata:
   linkType: hard
 
 "array.prototype.findlastindex@npm:^1.2.5":
-  version: 1.2.5
-  resolution: "array.prototype.findlastindex@npm:1.2.5"
+  version: 1.2.6
+  resolution: "array.prototype.findlastindex@npm:1.2.6"
   dependencies:
-    call-bind: "npm:^1.0.7"
+    call-bind: "npm:^1.0.8"
+    call-bound: "npm:^1.0.4"
     define-properties: "npm:^1.2.1"
-    es-abstract: "npm:^1.23.2"
+    es-abstract: "npm:^1.23.9"
     es-errors: "npm:^1.3.0"
-    es-object-atoms: "npm:^1.0.0"
-    es-shim-unscopables: "npm:^1.0.2"
-  checksum: 10c0/962189487728b034f3134802b421b5f39e42ee2356d13b42d2ddb0e52057ffdcc170b9524867f4f0611a6f638f4c19b31e14606e8bcbda67799e26685b195aa3
+    es-object-atoms: "npm:^1.1.1"
+    es-shim-unscopables: "npm:^1.1.0"
+  checksum: 10c0/82559310d2e57ec5f8fc53d7df420e3abf0ba497935de0a5570586035478ba7d07618cb18e2d4ada2da514c8fb98a034aaf5c06caa0a57e2f7f4c4adedef5956
   languageName: node
   linkType: hard
 
@@ -10393,6 +10394,7 @@ __metadata:
     "@backstage/cli": "npm:^0.30.0"
     "@backstage/repo-tools": "npm:^0.13.0"
     "@changesets/cli": "npm:^2.28.1"
+    prettier: "npm:3.5.3"
     typescript: "npm:^5.8.2"
   languageName: unknown
   linkType: soft
@@ -13026,9 +13028,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.5.73":
-  version: 1.5.118
-  resolution: "electron-to-chromium@npm:1.5.118"
-  checksum: 10c0/7082f349d2bf5cc04cc66b14d53caa198200e9bd7c80b57652e4c098ac3af64b9958d5b19b657a7b2048f3d1a3098978d6a63bcfe9ce2bdba38d418fbc309859
+  version: 1.5.119
+  resolution: "electron-to-chromium@npm:1.5.119"
+  checksum: 10c0/f4ca0eb3af21d16d2c1fd480c5a43428ce4423ca887338d69bd3eadae818b6d6e799c62b1baac1bc4f76e4226f5fb15a6b0dc8965f601ac053e86508d3e8e41c
   languageName: node
   linkType: hard
 
@@ -13338,7 +13340,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"es-shim-unscopables@npm:^1.0.2":
+"es-shim-unscopables@npm:^1.0.2, es-shim-unscopables@npm:^1.1.0":
   version: 1.1.0
   resolution: "es-shim-unscopables@npm:1.1.0"
   dependencies:
@@ -14684,14 +14686,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs-extra@npm:10.1.0, fs-extra@npm:^10.0.0":
-  version: 10.1.0
-  resolution: "fs-extra@npm:10.1.0"
+"fs-extra@npm:11.3.0, fs-extra@npm:^11.0.0, fs-extra@npm:^11.2.0, fs-extra@npm:~11.3.0":
+  version: 11.3.0
+  resolution: "fs-extra@npm:11.3.0"
   dependencies:
     graceful-fs: "npm:^4.2.0"
     jsonfile: "npm:^6.0.1"
     universalify: "npm:^2.0.0"
-  checksum: 10c0/5f579466e7109719d162a9249abbeffe7f426eb133ea486e020b89bc6d67a741134076bf439983f2eb79276ceaf6bd7b7c1e43c3fd67fe889863e69072fb0a5e
+  checksum: 10c0/5f95e996186ff45463059feb115a22fb048bdaf7e487ecee8a8646c78ed8fdca63630e3077d4c16ce677051f5e60d3355a06f3cd61f3ca43f48cc58822a44d0a
   languageName: node
   linkType: hard
 
@@ -14707,14 +14709,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs-extra@npm:^11.0.0, fs-extra@npm:^11.2.0, fs-extra@npm:~11.3.0":
-  version: 11.3.0
-  resolution: "fs-extra@npm:11.3.0"
+"fs-extra@npm:^10.0.0":
+  version: 10.1.0
+  resolution: "fs-extra@npm:10.1.0"
   dependencies:
     graceful-fs: "npm:^4.2.0"
     jsonfile: "npm:^6.0.1"
     universalify: "npm:^2.0.0"
-  checksum: 10c0/5f95e996186ff45463059feb115a22fb048bdaf7e487ecee8a8646c78ed8fdca63630e3077d4c16ce677051f5e60d3355a06f3cd61f3ca43f48cc58822a44d0a
+  checksum: 10c0/5f579466e7109719d162a9249abbeffe7f426eb133ea486e020b89bc6d67a741134076bf439983f2eb79276ceaf6bd7b7c1e43c3fd67fe889863e69072fb0a5e
   languageName: node
   linkType: hard
 
@@ -19987,13 +19989,14 @@ __metadata:
   linkType: hard
 
 "object.entries@npm:^1.1.8":
-  version: 1.1.8
-  resolution: "object.entries@npm:1.1.8"
+  version: 1.1.9
+  resolution: "object.entries@npm:1.1.9"
   dependencies:
-    call-bind: "npm:^1.0.7"
+    call-bind: "npm:^1.0.8"
+    call-bound: "npm:^1.0.4"
     define-properties: "npm:^1.2.1"
-    es-object-atoms: "npm:^1.0.0"
-  checksum: 10c0/db9ea979d2956a3bc26c262da4a4d212d36f374652cc4c13efdd069c1a519c16571c137e2893d1c46e1cb0e15c88fd6419eaf410c945f329f09835487d7e65d3
+    es-object-atoms: "npm:^1.1.1"
+  checksum: 10c0/d4b8c1e586650407da03370845f029aa14076caca4e4d4afadbc69cfb5b78035fd3ee7be417141abdb0258fa142e59b11923b4c44d8b1255b28f5ffcc50da7db
   languageName: node
   linkType: hard
 
@@ -21382,6 +21385,15 @@ __metadata:
   version: 1.1.2
   resolution: "prelude-ls@npm:1.1.2"
   checksum: 10c0/7284270064f74e0bb7f04eb9bff7be677e4146417e599ccc9c1200f0f640f8b11e592d94eb1b18f7aa9518031913bb42bea9c86af07ba69902864e61005d6f18
+  languageName: node
+  linkType: hard
+
+"prettier@npm:3.5.3":
+  version: 3.5.3
+  resolution: "prettier@npm:3.5.3"
+  bin:
+    prettier: bin/prettier.cjs
+  checksum: 10c0/3880cb90b9dc0635819ab52ff571518c35bd7f15a6e80a2054c05dbc8a3aa6e74f135519e91197de63705bcb38388ded7e7230e2178432a1468005406238b877
   languageName: node
   linkType: hard
 
@@ -24545,8 +24557,8 @@ __metadata:
   linkType: hard
 
 "testcontainers@npm:^10.0.0":
-  version: 10.19.0
-  resolution: "testcontainers@npm:10.19.0"
+  version: 10.20.0
+  resolution: "testcontainers@npm:10.20.0"
   dependencies:
     "@balena/dockerignore": "npm:^1.0.2"
     "@types/dockerode": "npm:^3.3.29"
@@ -24563,7 +24575,7 @@ __metadata:
     tar-fs: "npm:^3.0.6"
     tmp: "npm:^0.2.3"
     undici: "npm:^5.28.5"
-  checksum: 10c0/eb2b6d70d60ef60512c85f148ceb0e928fbc7e0d822dc03a05f8e85ec369a596aa23290b77febd71f94864e6c32ed30a8ff812edc75b0bd124dd5a1a0645bb0e
+  checksum: 10c0/3366cbdfc61dccf1dc8a62b914ac9ea2b3c307c2afcaaea05b347fe91fcd3d38403ca36ae2c20b508e5dfca9798787094927f7079696f33db7a4763848cb7106
   languageName: node
   linkType: hard
 
@@ -26361,11 +26373,11 @@ __metadata:
   linkType: hard
 
 "zod-to-json-schema@npm:^3.20.4, zod-to-json-schema@npm:^3.21.4":
-  version: 3.24.3
-  resolution: "zod-to-json-schema@npm:3.24.3"
+  version: 3.24.4
+  resolution: "zod-to-json-schema@npm:3.24.4"
   peerDependencies:
     zod: ^3.24.1
-  checksum: 10c0/5d626fa7a51539236962b1348a7b7e7111bd1722f23ad06dead2f76599e6bd918e4067ffba0695e0acac5a60f217b4953d2ad62ad403a482d034d94f025f3a4c
+  checksum: 10c0/eacef9f18159038cac87132005690c8e3da3a3aeb9dfbac2c2450f36f3b0345e895abcb165b5d81294b2dae3fedfb11b8b733daecc649b7c0584fcc9858a312d
   languageName: node
   linkType: hard
 
