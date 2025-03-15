@@ -54,7 +54,7 @@ const NewsItem = ({ news }: { news: News }) => {
     <Link to={`/news/${news.id}`} className={classes.newsItem}>
       <InfoCard
         title={news.title}
-        subheader={<PublishedDateAndAuthor news={news} />}
+        subheader={<PublishedDateAndAuthor news={news} vertical />}
         subheaderTypographyProps={{
           variant: 'body2',
         }}

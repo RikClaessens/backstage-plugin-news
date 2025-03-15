@@ -50,7 +50,7 @@ const PublishedDateAndAuthor = ({
   vertical = false,
 }: {
   news: News;
-  vertical: boolean;
+  vertical?: boolean;
 }) => {
   const classes = useStyles();
   return (
