@@ -1,5 +1,21 @@
 {
-  "name": "@rikclaessens/plugin-news-backend",
+  "name": "@rikclaessens/backstage-plugin-news-backend",
+  "description": "The News plugin retrieves markdown files with frontmatter and displays them as news articles in Backstage, Spotify's IDP framework. This is the backend plugin that retrieves news items, stores them in the database and make them available through the api.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RikClaessens/backstage-plugin-news.git"
+  },
+  "keywords": [
+    "backstage",
+    "idp",
+    "news",
+    "markdown"
+  ],
+  "author": "Rik Claessens",
+  "bugs": {
+    "url": "https://github.com/RikClaessens/backstage-plugin-news/issues"
+  },
+  "homepage": "https://github.com/RikClaessens/backstage-plugin-news#readme",
   "version": "0.1.0",
   "license": "Apache-2.0",
   "private": true,

@@ -1,14 +1,14 @@
-# news
+# @rikclaessens/backstage-plugin-news-backend
 
-This plugin backend was templated using the Backstage CLI. You should replace this text with a description of your plugin backend.
+The News plugin retrieves markdown files with frontmatter and displays them as news articles in Backstage, Spotify's IDP framework. This is the backend plugin that retrieves news items, stores them in the database and make them available through the api.
 
 ## Installation
 
-This plugin is installed via the `@internal/plugin-news-backend` package. To install it to your backend package, run the following command:
+To install this plugin to your backend package, run the following command:
 
 ```bash
 # From your root directory
-yarn --cwd packages/backend add @internal/plugin-news-backend
+yarn --cwd packages/backend add @rikclaessens/backstage-plugin-news-backend
 ```
 
 Then add the plugin to your backend in `packages/backend/src/index.ts`:
@@ -16,7 +16,15 @@ Then add the plugin to your backend in `packages/backend/src/index.ts`:
 ```ts
 const backend = createBackend();
 // ...
-backend.add(import('@internal/plugin-news-backend'));
+backend.add(import('@rikclaessens/backstage-plugin-news-backend'));
+```
+
+To configure the locations of the news articles, add the following to your app's `app-config.yaml`:
+
+```yaml
+news:
+  locations:
+    - https://dev.azure.com/your-org/your-project/_git/your-news-repo
 ```
 
 ## Development
