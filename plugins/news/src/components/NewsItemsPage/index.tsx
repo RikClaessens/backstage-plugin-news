@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  Content,
-  ContentHeader,
-  Header,
-  Page,
-} from '@backstage/core-components';
+import { Content, Header, Page } from '@backstage/core-components';
 import NewsItems from './NewsItems';
 
 export interface NewsItemsPageProps {
@@ -18,7 +13,6 @@ const NewsItemsPage = ({ title, subtitle, themeId }: NewsItemsPageProps) => {
     <Page themeId={themeId}>
       <Header title={title} subtitle={subtitle} />
       <Content>
-        <ContentHeader title="All news" />
         <NewsItems />
       </Content>
     </Page>
