@@ -10,7 +10,12 @@ import {
   Progress,
   ResponseErrorPanel,
 } from '@backstage/core-components';
-import { useApi, configApiRef, useApp } from '@backstage/core-plugin-api';
+import {
+  useApi,
+  configApiRef,
+  useApp,
+  identityApiRef,
+} from '@backstage/core-plugin-api';
 import { Box, Button } from '@material-ui/core';
 import MuiArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { News } from '../../types';
@@ -29,6 +34,7 @@ const NewsPage = ({ title, themeId = 'service' }: NewsPageProps) => {
   const params = useParams();
   const { id } = params;
   const config = useApi(configApiRef);
+  const identityApi = useApi(identityApiRef);
 
   const apiUrl = `${config.getConfig('backend').getString('baseUrl')}/api/news`;
 
@@ -37,7 +43,10 @@ const NewsPage = ({ title, themeId = 'service' }: NewsPageProps) => {
     loading,
     error,
   } = useAsync(async (): Promise<News> => {
-    const result = await fetch(`${apiUrl}/${id}`);
+    const { token } = await identityApi.getCredentials();
+    const result = await fetch(`${apiUrl}/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
     return result.json();
   }, []);
 
