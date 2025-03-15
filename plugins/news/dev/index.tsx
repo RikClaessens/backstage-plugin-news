@@ -11,26 +11,26 @@ import { newsPlugin, NewsItemsPage } from '../src/plugin';
 
 const mockCatalogApi = {
   getEntityByRef: async (entityRef: string) => {
-    if (entityRef === 'grp-zelda') {
+    if (entityRef === 'group:default/tech-research-labs') {
       return {
         kind: 'Group',
         metadata: {
-          name: 'grp-zelda',
-          title: 'Team Zelda',
+          name: 'tech-research-labs',
+          title: 'Research Labs',
           namespace: 'default',
-          description: 'Awesome team',
+          description: 'Lab rats',
         },
         spec: {},
       };
     }
-    if (entityRef === 'nl-group-it-eis-public-cloud-aws') {
+    if (entityRef === 'group:default/network-innovation-hub') {
       return {
         kind: 'Group',
         metadata: {
-          name: 'nl-group-it-eis-public-cloud-aws',
-          title: 'Public Cloud AWS',
+          name: 'network-innovation-hub',
+          title: 'Network Innovation Hub',
           namespace: 'default',
-          description: 'Awsome team',
+          description: 'Hubbies',
         },
         spec: {},
       };
