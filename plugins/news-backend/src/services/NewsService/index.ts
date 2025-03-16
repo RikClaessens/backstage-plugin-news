@@ -16,37 +16,6 @@ interface FetchNewsProps {
   persistenceContext: PersistenceContext;
 }
 
-const processNewsLocations = async (
-  dir: string,
-  locations: string[],
-  urlReader: UrlReaderService,
-  logger: LoggerService,
-  integrations: ScmIntegrations,
-  existingNewsItems: Set<string>,
-  persistenceContext: PersistenceContext,
-) => {
-  await Promise.all(
-    locations.map(async (location, index) => {
-      const locationDir = resolvePath(dir, `location-${index}`);
-      fs.mkdirSync(locationDir);
-      logger.info(`Created location dir: ${locationDir}`);
-      await fetchContents({
-        reader: urlReader,
-        integrations,
-        baseUrl: location,
-        outputPath: locationDir,
-      });
-      await processAllNews(
-        locationDir,
-        location,
-        logger,
-        existingNewsItems,
-        persistenceContext,
-      );
-    }),
-  );
-};
-
 const processAllNews = async (
   dir: string,
   location: string,
@@ -87,6 +56,37 @@ const processAllNews = async (
       }
     }
   }
+};
+
+const processNewsLocations = async (
+  dir: string,
+  locations: string[],
+  urlReader: UrlReaderService,
+  logger: LoggerService,
+  integrations: ScmIntegrations,
+  existingNewsItems: Set<string>,
+  persistenceContext: PersistenceContext,
+) => {
+  await Promise.all(
+    locations.map(async (location, index) => {
+      const locationDir = resolvePath(dir, `location-${index}`);
+      fs.mkdirSync(locationDir);
+      logger.info(`Created location dir: ${locationDir}`);
+      await fetchContents({
+        reader: urlReader,
+        integrations,
+        baseUrl: location,
+        outputPath: locationDir,
+      });
+      return processAllNews(
+        locationDir,
+        location,
+        logger,
+        existingNewsItems,
+        persistenceContext,
+      );
+    }),
+  );
 };
 
 const deleteNonExistingNews = async (

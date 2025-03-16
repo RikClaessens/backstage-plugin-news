@@ -1,7 +1,7 @@
 import React from 'react';
 import { InfoCard, Link } from '@backstage/core-components';
 import { useApp } from '@backstage/core-plugin-api';
-import { Box, Button, Chip, makeStyles, Typography } from '@material-ui/core';
+import { Box, Button, Chip, makeStyles } from '@material-ui/core';
 import MuiArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { News } from '../../types';
 import PublishedDateAndAuthor from '../PublishedDateAndAuthor';

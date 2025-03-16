@@ -5,7 +5,6 @@ import useAsync from 'react-use/lib/useAsync';
 import {
   Content,
   Header,
-  HeaderLabel,
   Page,
   Progress,
   ResponseErrorPanel,
@@ -16,10 +15,9 @@ import {
   useApp,
   identityApiRef,
 } from '@backstage/core-plugin-api';
-import { Box, Button, useMediaQuery, useTheme } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 import MuiArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { News } from '../../types';
-import { AuthorName, RelativePublishedDate } from '../PublishedDateAndAuthor';
 import NewsContent from './NewsContent';
 
 export interface NewsPageProps {
@@ -37,9 +35,6 @@ const NewsPage = ({ title, themeId = 'service' }: NewsPageProps) => {
   const identityApi = useApi(identityApiRef);
 
   const apiUrl = `${config.getConfig('backend').getString('baseUrl')}/api/news`;
-
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up('md'));
 
   const {
     value: news,

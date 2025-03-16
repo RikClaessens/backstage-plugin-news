@@ -56,5 +56,6 @@ backend.add(
 );
 
 backend.add(import('../src'));
+backend.add(import('@rikclaessens/backstage-plugin-search-backend-module-news'))
 
 backend.start();

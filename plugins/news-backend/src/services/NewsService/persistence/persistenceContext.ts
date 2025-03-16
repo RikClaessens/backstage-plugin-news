@@ -9,7 +9,7 @@ export type PersistenceContext = {
 };
 
 const migrationsDir = resolvePackagePath(
-  '@rikclaessens/plugin-news-backend',
+  '@rikclaessens/backstage-plugin-news-backend',
   'db/migrations',
 );
 

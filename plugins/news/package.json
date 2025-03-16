@@ -18,16 +18,28 @@
   "homepage": "https://github.com/RikClaessens/backstage-plugin-news#readme",
   "version": "0.1.0",
   "license": "Apache-2.0",
-  "private": true,
   "main": "src/index.ts",
   "types": "src/index.ts",
+  "typesVersions": {
+    "*": {
+      "package.json": [
+        "package.json"
+      ]
+    }
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./package.json": "./package.json"
+  },
   "publishConfig": {
-    "access": "public",
-    "main": "dist/index.esm.js",
-    "types": "dist/index.d.ts"
+    "access": "public"
   },
   "backstage": {
-    "role": "frontend-plugin"
+    "role": "frontend-plugin",
+    "pluginId": "news",
+    "pluginPackages": [
+      "@rikclaessens/backstage-plugin-news"
+    ]
   },
   "sideEffects": false,
   "scripts": {
@@ -44,17 +56,12 @@
     "@backstage/core-plugin-api": "^1.10.4",
     "@backstage/plugin-catalog-react": "^1.15.2",
     "@backstage/theme": "^0.6.4",
-    "@material-ui/core": "^4.9.13",
+    "@material-ui/core": "^4.12.2",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.61",
     "luxon": "^3.5.0",
-    "react-router": "6.30.0",
-    "react-router-dom": "6.30.0",
     "react-use": "^17.2.4",
     "uuid-by-string": "^4.0.0"
-  },
-  "peerDependencies": {
-    "react": "^16.13.1 || ^17.0.0 || ^18.0.0"
   },
   "devDependencies": {
     "@backstage/cli": "^0.30.0",
@@ -68,7 +75,14 @@
     "@types/react-dom": "^19",
     "@types/react-router-dom": "^5.3.3",
     "msw": "^1.0.0",
-    "react-dom": "^18.0.0"
+    "react": "^16.13.1 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.13.1 || ^17.0.0 || ^18.0.0",
+    "react-router-dom": "6.0.0-beta.0 || ^6.3.0"
+  },
+  "peerDependencies": {
+    "react": "^16.13.1 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.13.1 || ^17.0.0 || ^18.0.0",
+    "react-router-dom": "6.0.0-beta.0 || ^6.3.0"
   },
   "files": [
     "dist"
