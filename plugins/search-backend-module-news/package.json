@@ -1,0 +1,43 @@
+{
+  "name": "@rikclaessens/backstage-plugin-search-backend-module-news",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "description": "The news backend module for the search plugin.",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "publishConfig": {
+    "access": "public",
+    "main": "dist/index.cjs.js",
+    "types": "dist/index.d.ts"
+  },
+  "repository": {
+    "type": "git",
+    "directory": "plugins/search-backend-module-news"
+  },
+  "backstage": {
+    "role": "backend-plugin-module",
+    "pluginId": "search",
+    "pluginPackage": "@backstage/plugin-search-backend"
+  },
+  "scripts": {
+    "start": "backstage-cli package start",
+    "build": "backstage-cli package build",
+    "lint": "backstage-cli package lint",
+    "test": "backstage-cli package test",
+    "clean": "backstage-cli package clean",
+    "prepack": "backstage-cli package prepack",
+    "postpack": "backstage-cli package postpack"
+  },
+  "dependencies": {
+    "@backstage/backend-plugin-api": "^1.2.0",
+    "@backstage/plugin-search-backend-node": "^1.3.8",
+    "@backstage/plugin-search-common": "^1.2.17"
+  },
+  "devDependencies": {
+    "@backstage/backend-test-utils": "^1.3.0",
+    "@backstage/cli": "^0.30.0"
+  },
+  "files": [
+    "dist"
+  ]
+}

@@ -38,7 +38,8 @@
     "role": "frontend-plugin",
     "pluginId": "news",
     "pluginPackages": [
-      "@rikclaessens/backstage-plugin-news"
+      "@rikclaessens/backstage-plugin-news",
+      "@rikclaessens/backstage-plugin-news-backend"
     ]
   },
   "sideEffects": false,
