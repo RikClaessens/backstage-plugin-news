@@ -16,7 +16,7 @@
     "url": "https://github.com/RikClaessens/backstage-plugin-news/issues"
   },
   "homepage": "https://github.com/RikClaessens/backstage-plugin-news#readme",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "license": "Apache-2.0",
   "main": "src/index.ts",
   "types": "src/index.ts",

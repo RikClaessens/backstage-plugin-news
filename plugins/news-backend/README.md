@@ -49,12 +49,13 @@ status: published
 tags: [artificial-intelligence, software-development]
 ---
 
-For now, relative urls for images are not supported. Use absolute urls instead.
 
 # Title
 
 more markdown content here
 ```
+
+For now, relative urls for images are not supported. Use absolute urls instead.
 
 ## Development
 
