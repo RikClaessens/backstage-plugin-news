@@ -27,10 +27,37 @@ news:
     - https://dev.azure.com/your-org/your-project/_git/your-news-repo
 ```
 
+## Writing content
+
+You can add `.md` files to the configured locations. The files should have a frontmatter section at the top of the file. The frontmatter should contain the following fields:
+- `title`: The title of the news item
+- `summary`: A short summary of the news item
+- `created_at`: The date the news item was created in the format `YYYY-MM-DD`
+- `author`: The author of the news item, backstage ref
+- `status`: The status of the news item, one of `draft`, `published`
+- `tags`: An array of tags for the news item
+
+An example of a news item markdown file:
+
+```md
+---
+title: Backstage is the best way to create an IDP
+summary: Using Spotify's Backstage framework to create an IDP for your company is the best way to go. You leverage a wide community of developers and a robust framework to build your IDP.
+created_at: 2025-03-13
+author: my-awesome-team
+status: published
+tags: [artificial-intelligence, software-development]
+---
+
+For now, relative urls for images are not supported. Use absolute urls instead.
+
+# Title
+
+more markdown content here
+```
+
 ## Development
 
 This plugin backend can be started in a standalone mode from directly in this
 package with `yarn start`. It is a limited setup that is most convenient when
 developing the plugin backend itself.
-
-If you want to run the entire project, including the frontend, run `yarn dev` from the root directory.
