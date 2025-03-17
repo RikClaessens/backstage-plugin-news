@@ -33,6 +33,7 @@ import { News } from '../types';
 export type IndexableNewsDocument = IndexableDocument & {
   summary: string;
   createdAt: string;
+  author: string;
 };
 
 /**
@@ -109,6 +110,7 @@ export class NewsCollatorFactory implements DocumentCollatorFactory {
       text: news.body,
       summary: news.summary,
       createdAt: news.created_at,
+      author: news.author,
       location: `/news/${news.id}`,
     };
   }
