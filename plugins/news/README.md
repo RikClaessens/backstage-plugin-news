@@ -22,3 +22,16 @@ const routes = (
 );
 ...
 ```
+
+When searching for news, Backstage provides a default search result item. The plugin provides a result item that shows more information to the user. To use this result item, add the following code to the `SearchPage.tsx`:
+
+```tsx
+import { NewsSearchResultListItem } from '@rikclaessens/backstage-plugin-news';
+...
+
+<SearchResult>
+  ...
+  <NewsSearchResultListItem icon={<Bullhorn />} />
+</SearchResult>
+...
+```
