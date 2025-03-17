@@ -35,14 +35,14 @@ export const getRelativePublishedDate = (news: News) =>
 export const RelativePublishedDate = ({ news }: { news: News }) =>
   getRelativePublishedDate(news);
 
-export const AuthorName = ({ news }: { news: News }) => {
+export const AuthorName = ({ author }: { author: string }) => {
   const catalogApi = useApi(catalogApiRef);
   const { value } = useAsync(
-    async () => catalogApi.getEntityByRef(`group:default/${news.author}`),
-    [news],
+    async () => catalogApi.getEntityByRef(`group:default/${author}`),
+    [author],
   );
 
-  return value?.metadata.title ?? news.author;
+  return <>{value?.metadata.title ?? author}</>;
 };
 
 const PublishedDateAndAuthor = ({
@@ -64,7 +64,7 @@ const PublishedDateAndAuthor = ({
             <GroupIcon />
           </Box>
           <Typography variant="body2" className={classes.linkText}>
-            <AuthorName news={news} />
+            <AuthorName author={news.author} />
           </Typography>
         </Link>
       </Box>

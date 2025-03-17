@@ -1,1 +1,1 @@
-export { newsPlugin, NewsItemsPage } from './plugin';
+export { newsPlugin, NewsItemsPage, NewsSearchResultListItem } from './plugin';
